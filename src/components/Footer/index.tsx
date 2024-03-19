@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./Footer.module.css";
+import styles from "./styles.module.css";
 
 export default async function Footer() {
   return (
