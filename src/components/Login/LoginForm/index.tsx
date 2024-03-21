@@ -2,6 +2,9 @@
 
 import login from "@/actions/login";
 import Button from "@/components/Forms/Button";
+import Input from "@/components/Forms/Input";
+import ErrorMessage from "@/components/Helper/ErrorMessage";
+import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 function FormButton() {
@@ -27,13 +30,17 @@ export default function LoginForm() {
     data: null,
   });
 
+  useEffect(() => {
+    if (state.ok) window.location.href = "/account";
+  }, [state.ok]);
+
   return (
     <>
       <form action={action}>
-        <input type="text" name="username" placeholder="Usuário" />
-        <input type="password" name="password" placeholder="Senha" />
+        <Input type="text" label="Usuário" name="username" />
+        <Input type="password" label="Senha" name="password" />
+        <ErrorMessage error={state.error} />
         <FormButton />
-        <p>{state?.error}</p>
       </form>
     </>
   );
