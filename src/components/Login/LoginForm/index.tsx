@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
-import styles from "./styles.module.css";
+import styles from "../styles.module.css";
 
 function FormButton() {
   const { pending } = useFormStatus();

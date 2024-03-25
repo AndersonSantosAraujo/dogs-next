@@ -1,13 +1,13 @@
 "use client";
 
-import userPost from "@/actions/user-post";
 import Button from "@/components/Forms/Button";
 import Input from "@/components/Forms/Input";
 import ErrorMessage from "@/components/Helper/ErrorMessage";
-import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 
 import styles from "../styles.module.css";
+import passwordLost from "@/actions/password-lost";
+import { useEffect, useState } from "react";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -16,33 +16,37 @@ function FormButton() {
     <>
       {pending ? (
         <Button type="submit" disabled={pending}>
-          Cadastrando...
+          Enviando...
         </Button>
       ) : (
-        <Button type="submit">Cadastrar</Button>
+        <Button type="submit">Enviar e-mail</Button>
       )}
     </>
   );
 }
 
-export default function RegisterForm() {
-  const [state, action] = useFormState(userPost, {
+export default function LoginLostForm() {
+  const [state, action] = useFormState(passwordLost, {
     ok: false,
     error: "",
     data: null,
   });
+  const [url, setUrl] = useState(""); // 2ª solução
 
   useEffect(() => {
-    if (state.ok) window.location.href = "/account";
-  }, [state.ok]);
+    setUrl(window.location.href.replace("lost", "reset"));
+  }, []);
 
   return (
     <form className={styles.form} action={action}>
-      <Input type="text" label="Usuário" name="username" />
-      <Input type="email" label="E-mail" name="email" />
-      <Input type="password" label="Senha" name="password" />
+      <Input type="text" label="Email/Usuário" name="login" />
+      <input type="hidden" name="url" value={url} />
       <ErrorMessage error={state.error} />
-      <FormButton />
+      {state.ok ? (
+        <p style={{ color: "#4c1" }}>E-mail enviado!</p>
+      ) : (
+        <FormButton />
+      )}
     </form>
   );
 }
