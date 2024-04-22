@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 
 type Input = React.ComponentProps<"input"> & {
-  label: string;
+  label?: string;
   error?: string;
 };
 
