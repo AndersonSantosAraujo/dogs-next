@@ -9,6 +9,8 @@ import FeedIcon from "@/icons/feed-icon";
 import AddIcon from "@/icons/add-icon";
 import LogoutIcon from "@/icons/logout-icon";
 import Link from "next/link";
+import logout from "@/actions/logout";
+import { useUser } from "@/context/user-context";
 
 function getTitle(pathname: string) {
   switch (pathname) {
@@ -32,8 +34,10 @@ export default function AccountHeader() {
     setMobileMenu(false);
   }, [pathname]);
 
-  function handleLogout() {
-    // userLogout();
+  const { setUserState } = useUser();
+  async function handleLogout() {
+    await logout();
+    setUserState(null);
   }
 
   return (
