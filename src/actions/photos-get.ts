@@ -2,7 +2,6 @@
 
 import { PHOTOS_GET } from "@/functions/api";
 import apiError from "@/functions/api-error";
-import { error } from "console";
 
 export type Photo = {
   id: number;

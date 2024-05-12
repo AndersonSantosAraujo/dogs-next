@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./styles.module.css";
-// import PhotoComments from './PhotoComments';
+import PhotoComments from "../PhotoComments";
 
 import PhotoDelete from "../PhotoDelete";
 import Link from "next/link";
@@ -44,7 +44,7 @@ export default function PhotoContent({
           </ul>
         </div>
       </div>
-      {/* <PhotoComments single={single} id={photo.id} comments={comments} /> */}
+      <PhotoComments single={single} id={photo.id} comments={comments} />
     </div>
   );
 }
