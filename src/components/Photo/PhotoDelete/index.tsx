@@ -9,7 +9,7 @@ export default function PhotoDeleteIndex({ id }: { id: string }) {
   async function handleClick() {
     setLoading(true);
 
-    const confirm = window.confirm("Tem certezxa que deseja deletar?");
+    const confirm = window.confirm("Tem certeza que deseja deletar?");
 
     if (confirm) {
       await photoDelete(id);
